@@ -6,6 +6,7 @@ const Constraint=Matter.Constraint;
 var box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,box20;
 var block1,block2,block3;
 var ball,chain;
+var count=0;
 
 var engine,world;
 //var planets=createGroup();
@@ -41,14 +42,19 @@ block2=new Platform(650,300,200,20);
  block4=new Platform(425,455,20,70)
  block5=new Platform(775,405,20,70);
 
-ball=new Box(125,500,25,25);
- slingshot = new SlingShot(ball.body,{x:125, y:500});
+ball=new Box(170,420,25,25);
+ slingshot = new SlingShot(ball.body,{x:170, y:420});
  
 }
 
 function draw() {
   background(255,0,113);  
   Engine.update(engine);
+  if (frameCount%50===0) {
+    count=count+1;
+  }
+  text("Score "+count,700,50);
+  textFont(20)
  box1.display();
  box2.display();
  box3.display();
@@ -86,4 +92,12 @@ function mouseDragged(){
 
 function mouseReleased(){
  slingshot.fly();
+}
+
+function keyPressed(){
+  if(keyCode === 32){
+     slingshot.attach(ball.body);
+     ball.x=170;
+     ball.y=420
+  }
 }

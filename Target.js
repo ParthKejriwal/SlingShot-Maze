@@ -11,8 +11,13 @@ class Target{
         World.add(world, this.body);
       }
       display(){
-     rectMode(CENTER);
-        rect( this.body.position.x,this.body.position.y, this.width, this.height);
+        if( this.body.speed>6) {
+          World.remove(world,this.body);   
+             }
+         else{
+          rectMode(CENTER);
+          rect( this.body.position.x,this.body.position.y, this.width, this.height);
+         }
      
       }
     }
